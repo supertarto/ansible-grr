@@ -1,2 +1,19 @@
 ---
+- name: Install requirements
+  package:
+    name: ["git"]
+    state: present
 
+- name: Check if GRR directories already exists
+  stat:
+    path: "{{ grr_separate_git_dir }}"
+  register: grr_git_dir
+
+- name: Clone GRR git repository
+  git:
+    repo: "{{ grr_git_repo_url }}"
+    dest: "{{ grr_content_dest }}"
+    version: "{{ grr_git_branch_version }}"
+    separate_git_dir: "{{ grr_separate_git_dir }}"
+    force: true
+  when: not grr_git_dir.stat.exists or grr_force_update

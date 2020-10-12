@@ -48,4 +48,3 @@
     mariadb_use_dump_script: false
     mariadb_databases:
       - name: "GRRBase"
-

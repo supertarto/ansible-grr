@@ -11,7 +11,7 @@
 
 - name: Clone GRR git repository
   git:
-    repo: "{{ grr_git_repo_url }}"
+    repo: "{{ grr_git_repo_url }}"
     dest: "{{ grr_content_dest }}"
     version: "{{ grr_git_branch_version }}"
     separate_git_dir: "{{ grr_separate_git_dir }}"

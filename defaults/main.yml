@@ -4,3 +4,11 @@ grr_git_repo_url: "https://github.com/JeromeDevome/GRR.git"
 grr_content_dest: /var/www/grr/
 grr_git_branch_version: "GRR-3.4.1"
 grr_force_update: false
+
+grr_db_host: "localhost"
+grr_db_name: "grrbase"
+grr_db_user_name: "grruser"
+grr_db_password: "grrpassword"
+grr_table_prefix: ""
+grr_db_port: "3306"
+grr_db_apikey: "mypassphrase"

@@ -1,0 +1,18 @@
+<?php
+# Les quatre lignes suivantes sont à modifier selon votre configuration
+# ligne suivante : le nom du serveur qui herberge votre base sql.
+# Si c'est le même que celui qui heberge les scripts, mettre "localhost"
+$dbHost="{{ grr_db_host }}";
+# ligne suivante : le nom de votre base sql
+$dbDb="{{ grr_db_name }}";
+# ligne suivante : le nom de l'utilisateur sql qui a les droits sur la base
+$dbUser="{{ grr_db_user_name }}";
+# ligne suivante : le mot de passe de l'utilisateur sql ci-dessus
+$dbPass="{{ grr_db_password }}";
+# ligne suivante : préfixe du nom des tables de données
+$table_prefix="{{ grr_table_prefix }}";
+# ligne suivante : Port MySQL laissé par défaut, valeur numérique
+$dbPort={{ grr_db_port }};
+# ligne suivante : adaptation EnvOLE
+$apikey="{{ grr_db_apikey }}";
+?>

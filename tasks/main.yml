@@ -17,3 +17,13 @@
     separate_git_dir: "{{ grr_separate_git_dir }}"
     force: true
   when: not grr_git_dir.stat.exists or grr_force_update
+
+- name: Copy Configuration File
+  template:
+    src: connect.inc.php.j2
+    dest: "{{ grr_content_dest }}/include/connect.inc.php"
+    owner: www-data
+    group: www-data
+    mode: "0640"
+    force: true
+ 

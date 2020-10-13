@@ -26,4 +26,3 @@
     group: www-data
     mode: "0640"
     force: true
- 

@@ -48,3 +48,8 @@
     mariadb_use_dump_script: false
     mariadb_databases:
       - name: "GRRBase"
+
+    grr_db_name: "GRRBase"
+    grr_db_user_name: "grruser"
+    grr_db_password: "grrpassword"
+    grr_db_apikey: "mypassphrase"

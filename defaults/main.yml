@@ -20,7 +20,7 @@ grr_ldap_login: ""
 grr_ldap_password: ""
 grr_ldap_base: ""
 grr_ldap_filter: ""
-grr_ldap_tls: ""
+grr_ldap_tls: "FALSE"
 
 grr_config_year_calendar: "10"
 grr_config_default_timezone: "Europe/Paris"

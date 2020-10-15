@@ -1,5 +1,6 @@
 # Ansible GRR
-[![Build Status](https://travis-ci.org/supertarto/ansible-grr.svg?branch=master)](https://travis-ci.org/supertarto/ansible-grr)
+[![Build Status](https://travis-ci.com/supertarto/ansible-grr.svg?branch=master)](https://travis-ci.org/supertarto/ansible-grr)
+
 Install and configure GRR with ansible. Tested with GRR 3.4.1
 
 ## Requirement

@@ -27,14 +27,14 @@
     mode: "0640"
     force: true
 
-# - name: Deploy tables.my.sql (UTF8)
-#  template:
-#    src: tables.my.sql.j2
-#    dest: "{{ grr_content_dest }}/installation/tables.my.sql"
-#    owner: www-data
-#    group: www-data
-#    mode: "0640"
-#    force: true
+ - name: Deploy tables.my.sql (UTF8)
+  template:
+    src: tables.my.sql.j2
+    dest: "{{ grr_content_dest }}/installation/tables.my.sql"
+    owner: www-data
+    group: www-data
+    mode: "0640"
+    force: true
 
 - name: Deploy LDAP configuration
   template:

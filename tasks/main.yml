@@ -18,10 +18,19 @@
     force: true
   when: not grr_git_dir.stat.exists or grr_force_update
 
-- name: Copy Configuration File
+- name: Copy Connect File
   template:
     src: connect.inc.php.j2
     dest: "{{ grr_content_dest }}/include/connect.inc.php"
+    owner: www-data
+    group: www-data
+    mode: "0640"
+    force: true
+
+- name: Copy Configuration File
+  template:
+    src: config.inc.php.j2
+    dest: "{{ grr_content_dest }}/include/config.inc.php"
     owner: www-data
     group: www-data
     mode: "0640"

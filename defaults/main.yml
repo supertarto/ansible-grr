@@ -14,6 +14,7 @@ grr_db_port: "3306"
 grr_db_apikey: "mypassphrase"
 
 grr_use_ldap: false
+grr_ldap_protocol: "ldap"
 grr_ldap_adress: localhost
 grr_ldap_port: "389"
 grr_ldap_login: ""

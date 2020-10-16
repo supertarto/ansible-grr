@@ -44,9 +44,11 @@ grr_db_port: "3306"
 grr_db_apikey: "mypassphrase"
 ```
 If you want to use LDAP for authentification, set grr_use_ldap to true.
+The LDAP protocol can be either ldap or ldaps
 If you want to use TLS for your LDAP connection, set grr_ldap_tls to "TRUE". But, beware, it must me an sting and not a boolean.
 ```yml
 grr_use_ldap: false
+grr_ldap_protocol: "ldap"
 grr_ldap_adress: localhost
 grr_ldap_port: "389"
 grr_ldap_login: ""

@@ -1,5 +1,5 @@
 # Ansible GRR
-[![Build Status](https://travis-ci.com/supertarto/ansible-grr.svg?branch=master)](https://travis-ci.org/supertarto/ansible-grr)
+[![CI](https://github.com/supertarto/ansible-grr/workflows/CI/badge.svg?event=push)](https://github.com/supertarto/ansible-grr/actions?query=workflow%3ACI)
 
 Install and configure GRR with ansible. Tested with GRR 3.4.1
 
@@ -85,7 +85,7 @@ Only set to 1 for debug need.
 ```yml
 grr_config_debug_flag: "0"
 ```
-Set to 1 to allow automatic search of update. 
+Set to 1 to allow automatic search of update.
 ```yml
 grr_config_search_update: "1"
 ```

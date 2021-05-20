@@ -36,6 +36,11 @@
     mode: "0640"
     force: true
 
+- name: Check if tables.my.sql already exists
+  stat:
+    path: "{{ grr_content_dest }}/installation/tables.my.sql"
+  register: grr_tables_exists
+
 - name: Deploy tables.my.sql (UTF8)
   template:
     src: tables.my.sql.j2
@@ -44,6 +49,7 @@
     group: www-data
     mode: "0640"
     force: true
+  when: not grr_tables_exists.stat.exists
 
 - name: Import tables.my.sql in case of first install
   mysql_db:
@@ -51,7 +57,7 @@
     state: import
     target: "{{ grr_content_dest }}/installation/tables.my.sql"
     force: yes
-  when: grr_first_install
+  when: not grr_tables_exists.stat.exists and grr_first_install
 
 - name: Deploy LDAP configuration
   template:

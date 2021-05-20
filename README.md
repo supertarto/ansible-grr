@@ -26,12 +26,14 @@ https://github.com/JeromeDevome/GRR
 ## Role variables
 
 Informations needed for the installation. Force_update will overwite your previous grr directories.
+grr_first_install is meant for the first installation only. If set to true, the table.my.sql file will be imported. If not set to false after the first run, your DB might be overridden.
 ```yml
 grr_separate_git_dir: "/usr/local/grr-git"
 grr_git_repo_url: "https://github.com/JeromeDevome/GRR.git"
 grr_content_dest: /var/www/grr/
 grr_git_branch_version: "GRR-3.4.1"
 grr_force_update: false
+grr_first_install: false
 ```
 Your database informations.
 ```yml

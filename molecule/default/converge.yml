@@ -60,3 +60,4 @@
     grr_db_user_name: "grruser"
     grr_db_password: "grrpassword"
     grr_db_apikey: "mypassphrase"
+    grr_first_install: true

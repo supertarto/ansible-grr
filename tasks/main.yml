@@ -45,6 +45,14 @@
     mode: "0640"
     force: true
 
+- name: Import tables.my.sql in case of first install
+  mysql_db:
+    name: "{{ grr_db_name }}"
+    state: import
+    target: "{{ grr_content_dest }}/installation/tables.my.sql"
+    force: yes
+  when: grr_first_install
+
 - name: Deploy LDAP configuration
   template:
     src: config_ldap.inc.php.j2

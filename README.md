@@ -22,6 +22,8 @@ https://github.com/JeromeDevome/GRR
 
 ## Tested plateform
 * Debian 10 (Buster)
+* Debian 11 (Bullseye)
+* Debian 12 (Bookworm)
 
 ## Role variables
 
@@ -179,7 +181,7 @@ grr_config_CAS_setFixedServiceURL: ""
 
 ## Installation
 ```
-ansible-galaxy install supertarto.grr
+ansible-galaxy role install supertarto.grr
 ```
 ## License
 GPL V3.0

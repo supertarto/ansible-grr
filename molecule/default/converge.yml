@@ -23,9 +23,8 @@
       - php{{php_default_version_debian}}-gd
       - php{{php_default_version_debian}}-mbstring
       - php{{php_default_version_debian}}-curl
-      - php{{php_default_version_debian}}-json
       - php{{php_default_version_debian}}-ldap
-      - php{{php_default_version_debian}}-pdo
+      - php{{php_default_version_debian}}-intl
       - php{{php_default_version_debian}}-xml
 
     apache_create_vhosts: true

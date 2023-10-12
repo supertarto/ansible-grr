@@ -1,21 +1,21 @@
 # Ansible GRR
-[![CI](https://github.com/supertarto/ansible-grr/workflows/CI/badge.svg?event=push)](https://github.com/supertarto/ansible-grr/actions?query=workflow%3ACI)
+[![CI](https://github.com/supertarto/ansible-grr/actions/workflows/ci.yml/badge.svg)](https://github.com/supertarto/ansible-grr/actions/workflows/ci.yml)
 
 Install and configure GRR with ansible. Tested with GRR 3.4.1
 
 ## Requirement
 A webserver, php and a database are required. You can use supertarto.apache, supertarto.php and supertarto.mariadb. But other roles are just fine.
 For PHP, those modules are needed:
-* php7.3
-* php7.3-common
-* php7.3-mysql
-* php7.3-gd
-* php7.3-mbstring
-* php7.3-curl
-* php7.3-json
-* php7.3-ldap
-* php7.3-pdo
-* php7.3-xml
+* php7.4
+* php7.4-common
+* php7.4-mysql
+* php7.4-gd
+* php7.4-mbstring
+* php7.4-curl
+* php7.4-json
+* php7.4-ldap
+* php7.4-pdo
+* php7.4-xml
 
 You can have more information on the application official repository:
 https://github.com/JeromeDevome/GRR
@@ -134,16 +134,16 @@ grr_config_CAS_setFixedServiceURL: ""
     - role: supertarto.grr
   vars:
     php_packages:
-      - php7.3
-      - php7.3-common
-      - php7.3-mysql
-      - php7.3-gd
-      - php7.3-mbstring
-      - php7.3-curl
-      - php7.3-json
-      - php7.3-ldap
-      - php7.3-pdo
-      - php7.3-xml
+      - php7.4
+      - php7.4-common
+      - php7.4-mysql
+      - php7.4-gd
+      - php7.4-mbstring
+      - php7.4-curl
+      - php7.4-json
+      - php7.4-ldap
+      - php7.4-pdo
+      - php7.4-xml
     apache_create_vhosts: true
     apache_vhosts_filename: "grr.conf"
     apache_vhost_config:

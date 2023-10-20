@@ -2,7 +2,7 @@
 grr_separate_git_dir: "/usr/local/grr-git"
 grr_git_repo_url: "https://github.com/JeromeDevome/GRR.git"
 grr_content_dest: /var/www/grr/
-grr_git_branch_version: "GRR-3.4.1"
+grr_git_branch_version: "v3.5.1"
 grr_force_update: false
 # False to prevent override existing database
 grr_first_install: false

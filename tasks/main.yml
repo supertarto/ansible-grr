@@ -26,63 +26,63 @@
   when: grr_force_update
 
 - block:
-  - name: Copy Connect File
-    template:
-      src: connect.inc.php.j2
-      dest: "{{ grr_content_dest }}/include/connect.inc.php"
-      owner: www-data
-      group: www-data
-      mode: "0640"
-      force: true
+    - name: Copy Connect File
+      template:
+        src: connect.inc.php.j2
+        dest: "{{ grr_content_dest }}/include/connect.inc.php"
+        owner: www-data
+        group: www-data
+        mode: "0640"
+        force: true
 
-  - name: Copy Configuration File
-    template:
-      src: config.inc.php.j2
-      dest: "{{ grr_content_dest }}/include/config.inc.php"
-      owner: www-data
-      group: www-data
-      mode: "0640"
-      force: true
+    - name: Copy Configuration File
+      template:
+        src: config.inc.php.j2
+        dest: "{{ grr_content_dest }}/include/config.inc.php"
+        owner: www-data
+        group: www-data
+        mode: "0640"
+        force: true
 
-  - name: Deploy LDAP configuration
-    template:
-      src: config_ldap.inc.php.j2
-      dest: "{{ grr_content_dest }}/include/config_ldap.inc.php"
-      owner: www-data
-      group: www-data
-      mode: "0640"
-      force: true
-    when: grr_use_ldap
+    - name: Deploy LDAP configuration
+      template:
+        src: config_ldap.inc.php.j2
+        dest: "{{ grr_content_dest }}/include/config_ldap.inc.php"
+        owner: www-data
+        group: www-data
+        mode: "0640"
+        force: true
+      when: grr_use_ldap
   when: grr_git_branch_version == "v3.5.1"
 
 - block:
-  - name: Copy Connect File
-    template:
-      src: connect.inc.php.j2
-      dest: "{{ grr_content_dest }}/personnalisation/connect.inc.php"
-      owner: www-data
-      group: www-data
-      mode: "0640"
-      force: true
+    - name: Copy Connect File
+      template:
+        src: connect.inc.php.j2
+        dest: "{{ grr_content_dest }}/personnalisation/connect.inc.php"
+        owner: www-data
+        group: www-data
+        mode: "0640"
+        force: true
 
-  - name: Copy Configuration File
-    template:
-      src: config.inc.php.j2
-      dest: "{{ grr_content_dest }}/personnalisation/config.inc.php"
-      owner: www-data
-      group: www-data
-      mode: "0640"
-      force: true
+    - name: Copy Configuration File
+      template:
+        src: config.inc.php.j2
+        dest: "{{ grr_content_dest }}/personnalisation/config.inc.php"
+        owner: www-data
+        group: www-data
+        mode: "0640"
+        force: true
 
-  - name: Deploy LDAP configuration
-    template:
-      src: config_ldap.inc.php.j2
-      dest: "{{ grr_content_dest }}/personnalisation/config_ldap.inc.php"
-      owner: www-data
-      group: www-data
-      mode: "0640"
-      force: true
-    when: grr_use_ldap
+    - name: Deploy LDAP configuration
+      template:
+        src: config_ldap.inc.php.j2
+        dest: "{{ grr_content_dest }}/personnalisation/config_ldap.inc.php"
+        owner: www-data
+        group: www-data
+        mode: "0640"
+        force: true
+      when: grr_use_ldap
   when: grr_git_branch_version == "v4.1.1"
 
 #- name: Check if tables.my.sql already exists

@@ -20,7 +20,6 @@ You can have more information on the application official repository:
 https://github.com/JeromeDevome/GRR
 
 ## Tested plateform
-* Debian 10 (Buster)
 * Debian 11 (Bullseye)
 * Debian 12 (Bookworm)
 

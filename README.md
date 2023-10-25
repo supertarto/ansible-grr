@@ -182,5 +182,6 @@ grr_config_CAS_setFixedServiceURL: ""
 ```
 ansible-galaxy role install supertarto.grr
 ```
+
 ## License
 GPL V3.0

@@ -9,21 +9,21 @@
     path: "{{ grr_separate_git_dir }}"
   register: grr_git_dir
 
+- name: Add execption for git repository ownership
+  community.general.git_config:
+    name: safe.directory
+    scope: global
+    value: "{{ grr_content_dest }}"
+  when: grr_force_update
+
 - name: Clone GRR git repository
   ansible.builtin.git:
     repo: "{{ grr_git_repo_url }}"
     dest: "{{ grr_content_dest }}"
     version: "{{ grr_git_branch_version }}"
-#    separate_git_dir: "{{ grr_separate_git_dir }}"
+    separate_git_dir: "{{ grr_separate_git_dir }}"
     force: true
-  when: not grr_git_dir.stat.exists
-
-- name: Git Checkout - update GRR
-  ansible.builtin.git:
-    repo: "{{ grr_git_repo_url }}"
-    dest: "{{ grr_content_dest }}"
-    version: "{{ grr_git_branch_version }}"
-  when: grr_force_update
+  when: not grr_git_dir.stat.exists or grr_force_update
 
 - block:
     - name: Copy Connect File
@@ -34,6 +34,7 @@
         group: www-data
         mode: "0640"
         force: true
+      when: grr_force_update
 
     - name: Copy Configuration File
       template:
@@ -64,11 +65,12 @@
         group: www-data
         mode: "0640"
         force: true
+      when: grr_force_update
 
     - name: Copy Configuration File
       template:
         src: config.inc.php.j2
-        dest: "{{ grr_content_dest }}/personnalisation/config.inc.php"
+        dest: "{{ grr_content_dest }}/personnalisation/configperso.inc.php"
         owner: www-data
         group: www-data
         mode: "0640"
@@ -84,30 +86,6 @@
         force: true
       when: grr_use_ldap
   when: grr_git_branch_version == "v4.1.1"
-
-#- name: Check if tables.my.sql already exists
-#  stat:
-#    path: "{{ grr_content_dest }}/installation/tables.my.sql"
-#  register: grr_tables_exists
-
-#- name: Deploy tables.my.sql (UTF8)
-#  template:
-#    src: tables.my.sql.j2
-#    dest: "{{ grr_content_dest }}/installation/tables.my.sql"
-#    owner: www-data
-#    group: www-data
-#    mode: "0640"
-#    force: true
-#  when: not grr_tables_exists.stat.exists
-
-#- name: Import tables.my.sql in case of first install
-#  mysql_db:
-#    name: "{{ grr_db_name }}"
-#    state: import
-#    target: "{{ grr_content_dest }}/installation/tables.my.sql"
-#    force: yes
-#  when: not grr_tables_exists.stat.exists and grr_first_install
-
 
 - name: Change GRR directory owner
   file:

@@ -1,21 +1,20 @@
 # Ansible GRR
 [![CI](https://github.com/supertarto/ansible-grr/actions/workflows/ci.yml/badge.svg)](https://github.com/supertarto/ansible-grr/actions/workflows/ci.yml)
 
-Install and configure GRR with ansible. Tested with GRR 3.4.1
+Install and configure GRR with ansible. Tested with GRR *v3.5.1 and v4.1.1*
 
 ## Requirement
-A webserver, php and a database are required. You can use supertarto.apache, supertarto.php and supertarto.mariadb. But other roles are just fine.
+A webserver, php >= 7.4 and a database are required. You can use supertarto.apache, supertarto.php and supertarto.mariadb. But other roles are just fine.
 For PHP, those modules are needed:
-* php7.4
-* php7.4-common
-* php7.4-mysql
-* php7.4-gd
-* php7.4-mbstring
-* php7.4-curl
-* php7.4-json
-* php7.4-ldap
-* php7.4-pdo
-* php7.4-xml
+* common
+* mysql
+* gd
+* mbstring
+* curl
+* json
+* ldap
+* pdo
+* xml
 
 You can have more information on the application official repository:
 https://github.com/JeromeDevome/GRR
@@ -34,7 +33,7 @@ If not set to false after the first run, your DB might be overridden.
 grr_separate_git_dir: "/usr/local/grr-git"
 grr_git_repo_url: "https://github.com/JeromeDevome/GRR.git"
 grr_content_dest: /var/www/grr/
-grr_git_branch_version: "GRR-3.4.1"
+grr_git_branch_version: "v3.5.1"
 grr_force_update: false
 grr_first_install: false
 ```

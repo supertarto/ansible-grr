@@ -4,8 +4,6 @@ grr_git_repo_url: "https://github.com/JeromeDevome/GRR.git"
 grr_content_dest: /var/www/grr/
 grr_git_branch_version: "v3.5.1"
 grr_force_update: false
-# False to prevent override existing database
-grr_first_install: false
 
 grr_db_host: "localhost"
 grr_db_name: "grrbase"

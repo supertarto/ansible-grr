@@ -1,5 +1,5 @@
 ---
-grr_download_url: "https://github.com/JeromeDevome/GRR/releases/tag/{{ grr_version }}"
+grr_download_url: "https://github.com/JeromeDevome/GRR/archive/refs/tags/{{ grr_version }}.zip"
 grr_unarchive_dir: "/var/www"
 grr_content_dest: "{{ grr_unarchive_dir }}/grr"
 grr_version: "v4.3.7"

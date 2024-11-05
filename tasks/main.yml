@@ -58,12 +58,12 @@
 
 - name: Copy Configuration File
   template:
-      src: configperso.inc.php.j2
-      dest: "{{ grr_content_dest }}/personnalisation/configperso.inc.php"
-      owner: www-data
-      group: www-data
-      mode: "0640"
-      force: true
+    src: configperso.inc.php.j2
+    dest: "{{ grr_content_dest }}/personnalisation/configperso.inc.php"
+    owner: www-data
+    group: www-data
+    mode: "0640"
+    force: true
 
 - name: Deploy LDAP configuration
   template:

@@ -1,9 +1,14 @@
 ---
-grr_separate_git_dir: "/usr/local/grr-git"
-grr_git_repo_url: "https://github.com/JeromeDevome/GRR.git"
-grr_content_dest: /var/www/grr/
-grr_git_branch_version: "v3.5.1"
+grr_download_url: "https://github.com/JeromeDevome/GRR/releases/tag/{{ grr_version }}"
+grr_unarchive_dir: "/var/www"
+grr_content_dest: "{{ grr_unarchive_dir }}/grr"
+grr_version: "v4.3.7"
 grr_force_update: false
+
+grr_web_owner: www-data
+grr_web_group: www-data
+
+grr_backup_directory: "/var/www/grr-bck"
 
 grr_db_host: "localhost"
 grr_db_name: "grrbase"
@@ -31,8 +36,9 @@ grr_config_max_periodic_reservation: "365 + 1"
 grr_config_restore_db_admin_page: "1"
 grr_config_debug_flag: "0"
 grr_config_search_update: "1"
-grr_config_allow_module_upload: "1"
+grr_allow_force_update: "0"
 grr_config_max_log_keep: "365"
+grr_config_max_email_day_keep: "365"
 grr_config_auth_with_configinc: ""
 grr_config_sso_hide_interface: "false"
 grr_config_ldap_hide_interface: "false"

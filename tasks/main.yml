@@ -1,91 +1,79 @@
 ---
 - name: Install requirements
   ansible.builtin.package:
-    name: ["git"]
+    name: ["unzip"]
     state: present
 
 - name: Check if GRR directories already exists
-  stat:
-    path: "{{ grr_separate_git_dir }}"
-  register: grr_git_dir
+  ansible.builtin.stat:
+    path: "{{ grr_content_dest }}"
+  register: grr_installed
 
-- name: Add execption for git repository ownership
-  community.general.git_config:
-    name: safe.directory
-    scope: global
-    value: "{{ grr_content_dest }}"
-  when: grr_force_update
+# Backup local config
+- block:
 
-- name: Clone GRR git repository
-  ansible.builtin.git:
-    repo: "{{ grr_git_repo_url }}"
-    dest: "{{ grr_content_dest }}"
-    version: "{{ grr_git_branch_version }}"
-    separate_git_dir: "{{ grr_separate_git_dir }}"
+    - name: Check if GRR Backup already exists
+      ansible.builtin.stat:
+        path: "{{ grr_backup_directory }}"
+      register: grr_backup
+
+    - name: Remove Old GRR Backup before update
+      ansible.builtin.file:
+        path: "{{ grr_backup_directory }}"
+        state: absent
+      when: grr_backup.stat.exists
+
+    - name: BackUp GRR before update
+      ansible.builtin.copy:
+        remote_src: true
+        src: "{{ grr_content_dest }}/"
+        dest: "{{ grr_backup_directory }}"
+
+    - name: Remove GRR Folder before update
+      ansible.builtin.file:
+        path: "{{ grr_content_dest }}"
+        state: absent
+
+  when: grr_force_update and grr_installed.stat.exists
+
+- name: Download and extract GRR
+  ansible.builtin.unarchive:
+    src: "{{ grr_download_url }}"
+    remote_src: true
+    dest: "{{ grr_unarchive_dir }}"
+    owner: "{{ grr_web_owner }}"
+    group: "{{ grr_web_group }}"
+    validate_certs: false
+  when: not grr_installed.stat.exists or grr_force_update
+
+- name: Copy Connect File
+  template:
+    src: connect.inc.php.j2
+    dest: "{{ grr_content_dest }}/personnalisation/connect.inc.php"
+    owner: www-data
+    group: www-data
+    mode: "0640"
     force: true
-  when: not grr_git_dir.stat.exists or grr_force_update
+    when: grr_force_update and grr_installed.stat.exists
 
-- block:
-    - name: Copy Connect File
-      template:
-        src: connect.inc.php.j2
-        dest: "{{ grr_content_dest }}/include/connect.inc.php"
-        owner: www-data
-        group: www-data
-        mode: "0640"
-        force: true
-      when: grr_force_update
+- name: Copy Configuration File
+  template:
+      src: configperso.inc.php.j2
+      dest: "{{ grr_content_dest }}/personnalisation/configperso.inc.php"
+      owner: www-data
+      group: www-data
+      mode: "0640"
+      force: true
 
-    - name: Copy Configuration File
-      template:
-        src: config.inc.php.j2
-        dest: "{{ grr_content_dest }}/include/config.inc.php"
-        owner: www-data
-        group: www-data
-        mode: "0640"
-        force: true
-
-    - name: Deploy LDAP configuration
-      template:
-        src: config_ldap.inc.php.j2
-        dest: "{{ grr_content_dest }}/include/config_ldap.inc.php"
-        owner: www-data
-        group: www-data
-        mode: "0640"
-        force: true
-      when: grr_use_ldap
-  when: grr_git_branch_version == "v3.5.1"
-
-- block:
-    - name: Copy Connect File
-      template:
-        src: connect.inc.php.j2
-        dest: "{{ grr_content_dest }}/personnalisation/connect.inc.php"
-        owner: www-data
-        group: www-data
-        mode: "0640"
-        force: true
-      when: grr_force_update
-
-    - name: Copy Configuration File
-      template:
-        src: config.inc.php.j2
-        dest: "{{ grr_content_dest }}/personnalisation/configperso.inc.php"
-        owner: www-data
-        group: www-data
-        mode: "0640"
-        force: true
-
-    - name: Deploy LDAP configuration
-      template:
-        src: config_ldap.inc.php.j2
-        dest: "{{ grr_content_dest }}/personnalisation/config_ldap.inc.php"
-        owner: www-data
-        group: www-data
-        mode: "0640"
-        force: true
-      when: grr_use_ldap
-  when: grr_git_branch_version == "v4.1.1"
+- name: Deploy LDAP configuration
+  template:
+    src: config_ldap.inc.php.j2
+    dest: "{{ grr_content_dest }}/personnalisation/config_ldap.inc.php"
+    owner: www-data
+    group: www-data
+    mode: "0640"
+    force: true
+  when: grr_use_ldap
 
 - name: Change GRR directory owner
   file:

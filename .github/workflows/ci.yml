@@ -24,7 +24,7 @@ jobs:
           path: 'supertarto.grr'
 
       - name: Set up Python 3.
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
@@ -41,8 +41,6 @@ jobs:
     strategy:
       matrix:
         distrib:
-          - debian10
-          - debian11
           - debian12
 
     steps:
@@ -52,20 +50,12 @@ jobs:
           path: 'supertarto.grr'
 
       - name: Set up Python 3.
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
       - name: Install test dependencies.
-        run: pip3 install ansible molecule-plugins[docker] docker
-
-      - name: Disable AppArmor on Debian.
-        run: |
-            set -x
-            sudo apt-get install apparmor-profiles
-            sudo ln -s /etc/apparmor.d/usr.sbin.mysqld /etc/apparmor.d/disable/
-            sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld
-        if: ${{ startsWith(matrix.distrib, 'debian') }}
+        run: pip3 install ansible molecule molecule-plugins[docker] docker
 
       - name: Run Molecule tests.
         run: molecule test

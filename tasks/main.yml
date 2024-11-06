@@ -46,8 +46,17 @@
     validate_certs: false
   when: not grr_installed.stat.exists or grr_force_update
 
+- name: Check GRR extracted directory
+  ansible.builtin.stat:
+    path: "{{ grr_unarchive_dir }}/GRR-{{ grr_version }}"
+  register: grr_extracted_directory
+
+- name: Rename GRR extracted directory
+  command: mv {{ grr_unarchive_dir }}/GRR-{{ grr_version }} {{ grr_content_dest }}
+  when: grr_extracted_directory.stat.exists
+
 - name: Copy Connect File
-  template:
+  ansible.builtin.template:
     src: connect.inc.php.j2
     dest: "{{ grr_content_dest }}/personnalisation/connect.inc.php"
     owner: www-data
@@ -57,7 +66,7 @@
   when: grr_force_update and grr_installed.stat.exists
 
 - name: Copy Configuration File
-  template:
+  ansible.builtin.template:
     src: configperso.inc.php.j2
     dest: "{{ grr_content_dest }}/personnalisation/configperso.inc.php"
     owner: www-data
@@ -66,7 +75,7 @@
     force: true
 
 - name: Deploy LDAP configuration
-  template:
+  ansible.builtin.template:
     src: config_ldap.inc.php.j2
     dest: "{{ grr_content_dest }}/personnalisation/config_ldap.inc.php"
     owner: www-data
@@ -76,8 +85,8 @@
   when: grr_use_ldap
 
 - name: Change GRR directory owner
-  file:
+  ansible.builtin.file:
     path: "{{ grr_content_dest }}"
-    owner: "www-data"
-    group: "www-data"
+    owner: "{{ grr_web_owner }}"
+    group: "{{ grr_web_group }}"
     recurse: true

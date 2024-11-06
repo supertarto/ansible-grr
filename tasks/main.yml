@@ -54,7 +54,7 @@
     group: www-data
     mode: "0640"
     force: true
-    when: grr_force_update and grr_installed.stat.exists
+  when: grr_force_update and grr_installed.stat.exists
 
 - name: Copy Configuration File
   template:

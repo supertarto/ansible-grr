@@ -21,6 +21,7 @@ https://github.com/JeromeDevome/GRR
 
 ## Tested plateform
 * Debian 12 (Bookworm)
+* Debian 13 (Trixie)
 
 ## Role variables
 

@@ -1,7 +1,7 @@
 # Ansible GRR
 [![CI](https://github.com/supertarto/ansible-grr/actions/workflows/ci.yml/badge.svg)](https://github.com/supertarto/ansible-grr/actions/workflows/ci.yml)
 
-Install and configure GRR with ansible. Tested with GRR *>=v4.1.0*
+Install and configure GRR with ansible. Tested with GRR *>=v4.1.0* and for debian 12 and debian 13.
 
 ## Requirement
 A webserver, php >= 7.4 and a database are required. You can use supertarto.apache, supertarto.php and supertarto.mariadb. But other roles are just fine.
